@@ -1,21 +1,19 @@
-import React from "react"
-//import Hog from ".Hog"
+import React from 'react'
 
-
-function HogDetails({hog}) {
-
-  const {specialty, weight, greased} = hog;
+function HogDetails({ hog }) {
+  const { greased, weight, "highest medal achieved": medal } = hog
   
-return (
-    <div>
-        <div>{weight}</div>
-        <div>{specialty}</div>
-        <div>{greased ? "greased": "not greased"}</div>
+  return (
+    <div className="description">
+      <strong>{greased ? 'Greased' : 'Nongreased'}</strong>
+      <p>
+        Highest medal achived: <strong>{medal}</strong>
+      </p>
+      <p>
+        Weight : <strong>{weight}</strong>
+      </p>
     </div>
-)
-
-
-
+  )
 }
 
-export default HogDetails;
+export default HogDetails

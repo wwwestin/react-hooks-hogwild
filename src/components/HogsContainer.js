@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import hogs from "../porkers_data";
 import Hog from "./Hog.js"
 

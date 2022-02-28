@@ -1,27 +1,42 @@
-import React, {useState} from "react";
+import { useState } from "react";
 import HogDetails from "./HogDetails";
 
+function HogCard({ hog }) {
+  const [isHidden, setIsHidden] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
-function Hog({hog}) {
+  function handleDetailsClick() {
+    setShowDetails((prevShowDetails) => !prevShowDetails);
+  }
 
-  const {name, image } = hog
-  const [showDetails, setShowDetails]  = useState(false)
+  if (isHidden) return null;
 
-  function handleDetailClick() {
-    setShowDetails((showDetails) => !showDetails);
+  const { name, specialty, image } = hog;
+
+  return (
+    <div className="ui card eight wide column pigTile">
+      <div className="image">
+        <img src={image} alt="hogPic" />
+      </div>
+      <div className="content">
+        <h3 className="header">{name}</h3>
+        <div className="description">Specialty: {specialty}</div>
+      </div>
+      <div className="extra content">
+        {showDetails ? <HogDetails hog={hog} /> : null}
+
+        <button className="ui button" onClick={handleDetailsClick}>
+          {showDetails ? "Less Info" : "More Info"}
+        </button>
+        <button className="ui button" onClick={() => setIsHidden(true)}>
+          Hide Me{" "}
+          <span role="img" aria-label="snout">
+            🐽
+          </span>
+        </button>
+      </div>
+    </div>
+  );
 }
 
-
-        return (
-            <div className="image">
-                <img onClick ={handleDetailClick} src = {image} alt=""/> 
-                {showDetails ? <HogDetails hog ={hog}/>: ""}
-            <div>
-                {name}
-               
-            </div>
-            </div>
-        )
-    }
-    
-    export default Hog;
+export default HogCard;
